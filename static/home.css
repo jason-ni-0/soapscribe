@@ -1,0 +1,29 @@
+#logo {
+    border: 1px solid white;
+    background-color: white;
+    font-family: Fira Sans; 
+    font-size: 22px; 
+    color: black;
+    border-radius: 10%;
+    font-weight: bold;
+    padding: 8px;
+    margin: 10px;
+    margin-left: 5px;
+    box-shadow: 0 3px 10px rgb(230 230 230 / 0.2);
+    text-decoration: none;
+}
+#main-nav {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    padding: 10px
+}
+#btn{
+    border:1px solid black;
+    background-color: #23395d;
+    width: 20%;
+}
+#content-hold{
+    border-radius: 1%;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
