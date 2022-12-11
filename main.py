@@ -6,7 +6,7 @@ import re
 app = Flask(__name__)
 # app.config.from_object(Config)
 
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
