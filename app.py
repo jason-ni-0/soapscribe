@@ -46,7 +46,7 @@ def home():
         homeTreat = treathomeResponse["choices"][0]["text"]
         planResponse = openai.Completion.create(
             model="text-davinci-003",
-            prompt=f"How to prevent {diagnosis} and how long(specific time) after doctor visit should patient return to doctor office?",
+            prompt=f"How to prevent {diagnosis} (lowercase comma delimited list) and how long(specific time) after doctor visit should patient return to doctor office?",
             temperature=0.7,
             max_tokens=714,
             top_p=1,
