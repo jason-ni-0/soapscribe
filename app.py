@@ -51,6 +51,7 @@ def getPlan(diagnosis, res):
     res[0] = planResponse
 
 @app.route('/api/v1/health', methods=['GET'])
+@cross_origin()
 def health():
     return {'message':'OK'}
 
@@ -59,6 +60,7 @@ def health():
 def home():
     if 'diagnosis' in request.args:
         diagnosis = request.args["diagnosis"]
+        print(diagnosis)
 
         # create return variables for symptoms, treatments, and plan
         sympResponse = [None]
