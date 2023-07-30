@@ -3,11 +3,13 @@ import openai
 import threading
 from flask import Flask, render_template, request, redirect, url_for, session
 from dotenv import load_dotenv
-app = Flask(__name__)
+from flask_cors import CORS, cross_origin
 
 load_dotenv()
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 # app.config.from_object(Config)
 PORT = os.environ.get('PORT')
 openai.api_key = os.environ.get('OPENAI_API_KEY')
@@ -53,6 +55,7 @@ def health():
     return {'message':'OK'}
 
 @app.route('/api/v1/generate', methods=['GET', 'POST'])
+@cross_origin()
 def home():
     if 'diagnosis' in request.args:
         diagnosis = request.args["diagnosis"]
