@@ -47,7 +47,7 @@ def getPlan(diagnosis, res):
     )
     res[0] = planResponse
 
-@app.route('/api/health', methods=['GET'])
+@app.route('/api/v1/health', methods=['GET'])
 def health():
     return {'message':'OK'}
 
