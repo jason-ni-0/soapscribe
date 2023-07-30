@@ -3,6 +3,7 @@ import openai
 import threading
 from flask import Flask, render_template, request, redirect, url_for, session
 from dotenv import load_dotenv
+app = Flask(__name__)
 
 load_dotenv()
 
@@ -46,11 +47,14 @@ def getPlan(diagnosis, res):
     )
     res[0] = planResponse
 
+@app.route('/api/health', methods=['GET'])
+def health():
+    return {'message':'OK'}
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/api/v1/generate', methods=['GET', 'POST'])
 def home():
-    if 'diagnosis' in request.form:
-        diagnosis = request.form["diagnosis"]
+    if 'diagnosis' in request.args:
+        diagnosis = request.args["diagnosis"]
 
         # create return variables for symptoms, treatments, and plan
         sympResponse = [None]
@@ -74,8 +78,8 @@ def home():
         medTreat = treatmedResponse[0]["choices"][0]["text"]
         plan = planResponse[0]["choices"][0]["text"]
 
-        return render_template('home.html', diagnosis=diagnosis, symptoms=symptom, medTreat=medTreat, plan=plan)
-    return render_template('home.html')
+        return {'diagnosis': diagnosis, 'symptoms':symptom, 'medTreat': medTreat, 'plan': plan}
+    return {}
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
